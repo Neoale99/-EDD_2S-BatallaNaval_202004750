@@ -2,7 +2,8 @@
 #include <cstdlib>
 #include <iostream>
 #include "Lista_usuariosh.h"
-
+#include "json/json.h"
+#include <fstream>
 using namespace std;
 
 void menu();
@@ -41,7 +42,7 @@ void menu(){
 
         switch (opcion) {
             case 1:
-                cout << "Aqui ira la carga masiva"<<endl;
+
                 carga();
                 opcion = 5;
                 break;
@@ -56,7 +57,7 @@ void menu(){
                 break;
 
             case 4:
-                reportes();
+                desplegarListaPU();
                 opcion = 5;
                 break;
             case 5:
@@ -74,9 +75,39 @@ void menu(){
 }
 
 void carga(){
+        string url;
+        int monedas,edad;
+        string tmpstr,usuario,contrasena;
+        size_t position;
+        bool condicion;
+        string rep = "\"", y = "";
 
-    cout<< "Ingrese la ruta del archivo"<<endl;
-    cout<< "Archivo cargado"<<endl;
+        cout << "Ingrese la ruta del archivo a leer"<<endl;
+        cin >> url;
+        ifstream ifs(url);
+        Json::Reader reader;
+        Json::Value obj;
+        reader.parse(ifs, obj);
+        const Json::Value& usuarios = obj["usuarios"];
+        for (int i = 0; i < usuarios.size(); i++){
+               usuario = usuarios[i]["nick"].asString();
+                tmpstr = usuarios[i]["edad"].asString();
+                while ((position = tmpstr.find(rep)) != std::string::npos) {
+                tmpstr.replace(position, 1, y);
+                }
+                edad = stoi(tmpstr);
+                tmpstr = usuarios[i]["monedas"].asString();
+                while ((position = tmpstr.find(rep)) != std::string::npos) {
+                tmpstr.replace(position, 1, y);
+                }
+                monedas = stoi(tmpstr);
+                contrasena = usuarios[i]["password"].asCString();
+
+
+    insertarmasivo(usuario,contrasena,monedas,edad);
+    }
+    cout << "Archivo cargado con exito"<<endl;
+    menu();
 
 }
 void login(){

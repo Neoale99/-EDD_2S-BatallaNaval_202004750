@@ -50,6 +50,37 @@ void insertarNodo(){
     }
 }
 
+void insertarmasivo(string usuario, string contrasena, int monedas, int edad){
+    bool condicion;
+    nodo* nuevo = new nodo();
+    condicion = buscarNodo(usuario);
+    if (condicion!=1){
+    nuevo->nombre = usuario;
+    nuevo->edad = edad;
+    nuevo->monedas = monedas;
+	nuevo->contra = SHA256::cifrar(contrasena);
+	if(primero==NULL){
+		primero = nuevo;
+		ultimo = nuevo;
+		primero->siguiente = primero;
+		primero->atras = ultimo;
+	}else{
+		ultimo->siguiente = nuevo;
+		nuevo->atras = ultimo;
+		nuevo->siguiente = primero;
+		ultimo = nuevo;
+		primero->atras = ultimo;
+	}
+	cout << "\n Usuario creado\n\n";
+    } else {
+        cout << "Usuario ya existente, ustilice uno distinto"<< endl;
+        insertarNodo();
+    }
+
+
+
+    }
+
 bool buscarNodo(string usuario){
 	nodo* actual = new nodo();
 	actual = primero;
@@ -79,17 +110,17 @@ bool buscarNodo(string usuario){
 
 }
 
-bool buscarLogin(std::string usuario, std::string contrasena){
+bool buscarLogin(std::string usuario, std::string contrasena){ //Buscar porque estos son los unicos que me pide con std::string
     nodo* actual = new nodo();
 	actual = primero;
 	bool encontrado = false;
-
+	cout << actual->contra;
 	string nodoBuscado = usuario;
 	string contraval = contrasena; //validación de la contraseña
 		do{
 
 			if(actual->nombre==nodoBuscado&&actual->contra==contraval){
-
+                cout << actual->contra << endl;
 				encontrado = true;
 
 				return true;
@@ -160,13 +191,13 @@ void eliminarNodo(string usuario){ //Pasar por parámetro tambien y luego elimina
 					primero = primero->siguiente; //Nos movemos una posición hacia adelante
 					primero->atras = ultimo; //Ponemos la posición final de primero en el ultimo nodo
 					ultimo->siguiente = primero; //Encadenamos la lista circular, despues del fin, saltamos al inicio
-				}else if(actual==ultimo){
-					ultimo = anterior;
-					ultimo->siguiente = primero;
-					primero->atras = ultimo;
+				}else if(actual==ultimo){ //Si nuestro puntero llega al final de la lista
+					ultimo = anterior; //Pasamos el ultimo a uno atrás
+					ultimo->siguiente = primero; //El "Final" nos llevará al inicio
+					primero->atras = ultimo; //Regresamos a su posición el final
 				}else{
-					anterior->siguiente = actual->siguiente;
-					actual->siguiente->atras = anterior;
+					anterior->siguiente = actual->siguiente; //El anterior pasa a ser el siguiente
+					actual->siguiente->atras = anterior; //Cambiamos el actual hacia "anterior"
 				}
 
 				cout << "\n Cuenta eliminada \n\n";
