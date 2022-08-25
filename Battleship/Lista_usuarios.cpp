@@ -2,12 +2,13 @@
 #include <iostream>
 #include "sha256.h"
 #include "Lista_usuariosh.h"
-
+#include "Lista_categoriash.h"
 struct nodo{
 	int edad;
     string nombre;
     int monedas;
     string contra;
+
 	nodo* siguiente;
 	nodo* atras;
 } *primero, *ultimo;
@@ -59,6 +60,7 @@ void insertarmasivo(string usuario, string contrasena, int monedas, int edad){
     nuevo->edad = edad;
     nuevo->monedas = monedas;
 	nuevo->contra = SHA256::cifrar(contrasena);
+
 	if(primero==NULL){
 		primero = nuevo;
 		ultimo = nuevo;
@@ -114,13 +116,11 @@ bool buscarLogin(std::string usuario, std::string contrasena){ //Buscar porque e
     nodo* actual = new nodo();
 	actual = primero;
 	bool encontrado = false;
-	cout << actual->contra;
 	string nodoBuscado = usuario;
 	string contraval = contrasena; //validación de la contraseña
 		do{
 
 			if(actual->nombre==nodoBuscado&&actual->contra==contraval){
-                cout << actual->contra << endl;
 				encontrado = true;
 
 				return true;
@@ -232,6 +232,42 @@ void desplegarListaPU(){
 	}else{
 		cout << "\n La lista se Encuentra Vacia\n\n";
 	}
+}
+void Ordenarascendente(){
+    nodo* actual = new nodo();
+    nodo* temp = new nodo();
+    string tmpusuario,tmpcontra;
+    int tmpedad, tmpmonedas;
+
+    if(primero!=NULL){
+        actual = primero;
+        temp = actual->siguiente;
+        while(temp!=primero){
+            if(actual->edad > temp->edad){
+                    cout<< actual->edad <<" : " <<temp->edad;
+                tmpusuario = actual->nombre;
+                tmpcontra = actual->contra;
+                tmpmonedas = actual->monedas;
+                tmpedad = actual->edad;
+
+                actual->nombre = temp->nombre;
+                actual->contra = temp->contra;
+                actual->monedas = temp->monedas;
+                actual->edad = temp->edad;
+
+                temp->nombre = tmpusuario;
+                temp->contra = tmpcontra;
+                temp->monedas = tmpmonedas;
+                temp->edad = tmpedad;
+            }
+            temp = temp->siguiente;
+
+        }
+        actual = actual->siguiente;
+    } else {
+        cout<<"Lista vacia"<<endl;
+    }
+
 }
 string cifrar(string contrasena){
     return SHA256::cifrar(contrasena);
