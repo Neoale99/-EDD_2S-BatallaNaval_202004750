@@ -1,0 +1,10 @@
+digraph G{ bgcolor = LightSalmon; 
+node[shape=box3d, style=filled,color = SlateBlue ,fillcolor = azure];
+nodo1[label=" X:4 \n Y:1"]
+nodo2[label=" X:1 \n Y:5"]
+nodo3[label=" X:4 \n Y:3"]
+nodo4[label=" X:2 \n Y:1"]
+nodo5[label=" X:5 \n Y:1"]
+nodo1->nodo2->nodo3->nodo4->nodo5
+ rankdir=UD; 
+}

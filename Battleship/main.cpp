@@ -223,6 +223,7 @@ void reportes(){
                 break;
             case 3:
                 cout << "Generando imagen de la cola de movimientos"<<endl;
+                system(("Cola.png"));
                 break;
 
             case 4:
