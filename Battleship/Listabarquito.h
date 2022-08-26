@@ -128,20 +128,23 @@ void desplegarLista(){
 void sortListabarquito(){
 	Nodobarquito* actual = new Nodobarquito();
 	Nodobarquito* temp = new Nodobarquito();
-	Nodobarquito* tmp = new Nodobarquito();
-
+	Nodobarquito* auxiliar = new Nodobarquito();
 	if(!this->estaVacio()){
 		actual = this->primero;
+
 		while(actual->siguienteB != NULL){
-			tmp = actual->siguienteB;
-			while(tmp != NULL){
-				if(tmp->barquito->precio < actual->barquito->precio){
+            cout << "Aqui si llego" <<endl;
+			auxiliar = actual->siguienteB;
+			while(auxiliar != primero){
+				if(auxiliar->barquito->precio < actual->barquito->precio){
+
+                    cout << auxiliar->barquito->precio <<" : " << actual->barquito->precio <<endl;
                     temp->barquito = actual->barquito;
-                    actual->barquito = tmp->barquito;
-                    tmp->barquito = temp->barquito;
+                    actual->barquito = auxiliar->barquito;
+                    auxiliar->barquito = temp->barquito;
 
 				}
-				tmp = tmp->siguienteB;
+				auxiliar = auxiliar->siguienteB;
 			}
 
 			actual = actual->siguienteB;

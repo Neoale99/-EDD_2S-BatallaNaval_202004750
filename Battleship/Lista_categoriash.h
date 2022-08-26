@@ -70,6 +70,8 @@ public:
         while(aux!=NULL){
 
             std::cout << "Categoria:" << aux->categoria << " ";
+
+            cout<<endl;
             aux->Barcos->sortListabarquito();
             aux->Barcos->desplegarLista();
 

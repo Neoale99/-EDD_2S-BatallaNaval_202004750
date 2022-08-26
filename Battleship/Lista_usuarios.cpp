@@ -294,9 +294,7 @@ void Ordenarascendente(){
 
 
                 }
-                int edd;
-                edd = actual->edad;
-                cout << i<< " : "<<edd  ;
+
                 auxiliar = auxiliar->siguiente;
             }
             actual = actual->siguiente;

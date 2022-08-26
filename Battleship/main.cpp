@@ -237,8 +237,8 @@ void reportes(){
 
             case 6:
                 cout << "Imprimiendo articulos ordenados de forma ascendente en precio"<<endl;
-                Articulos->Fincate->Barcos->sortListabarquito();
-                Articulos->imprimir();
+                //Articulos->Fincate->Barcos->sortListabarquito();
+                //Articulos->Fincate->Barcos->desplegarLista();
 
                 break;
             case 7:
