@@ -1,8 +1,13 @@
 
 #include <iostream>
+#include <windows.h>
+#include <fstream>
+#include <sstream>
+#include <string>
 #include "sha256.h"
 #include "Lista_usuariosh.h"
 #include "Lista_categoriash.h"
+using namespace::std;
 struct nodo{
 	int edad;
     string nombre;
@@ -12,7 +17,6 @@ struct nodo{
 	nodo* siguiente;
 	nodo* atras;
 } *primero, *ultimo;
-
 
 void insertarNodo(){
 	char con[20];
@@ -218,6 +222,134 @@ void eliminarNodo(string usuario){ //Pasar por parámetro tambien y luego elimina
 }
 
 void desplegarListaPU(){
+    int i = 1;
+    int tmpedad,tmpmon;
+    string dot ="digraph G{ bgcolor = LightSalmon; \n";
+    dot+="node[shape=box3d, style=filled,color = SlateBlue ,fillcolor = azure];\n";
+	nodo* actual = new nodo();
+	actual = primero;
+	if(primero!=NULL){
+		do{
+            tmpedad = actual->edad;
+            tmpmon = actual->monedas;
+            dot+= "nodo" + to_string(i)+"[label=\" Nombre: " + actual->nombre + " \\n contrasena: " + actual->contra + "\\n Edad: "+ to_string(tmpedad) +"\\n Monedas: "+to_string(tmpmon)+"\"]\n";
+			//cout << "\n Nombre: " << actual->nombre;
+			//cout << "\n Edad: " << actual->edad;
+			//cout << "\n Contraseña: " << actual->contra;
+			//cout << "\n Monedas: " << actual->monedas<<endl;
+			actual = actual->siguiente;
+			i+=1;
+		}while(actual!=primero);
+
+	}else{
+		cout << "\n La lista se Encuentra Vacia\n\n";
+	}
+	for(int j = 1;j<i;j++){
+
+
+        if(j+1==i){
+            dot+="nodo"+to_string(j)+"->nodo"+to_string(1);
+
+        } else{
+             dot+="nodo"+to_string(j)+"->";
+        }
+
+
+	}
+	dot+="\n rankdir=UD; \n}";
+    ofstream file;
+    file.open("Listacircular.dot");
+    file << dot;
+    file.close();
+
+
+    system(("dot -Tpng Listacircular.dot -o  Listacircular.png"));
+}
+void Ordenarascendente(){
+    nodo* actual = new nodo();
+    nodo* temp = new nodo();
+    nodo* auxiliar = new nodo();
+    int i = 0;
+    if(primero!=NULL){
+        actual = primero;
+        while(actual->siguiente!=primero){
+            auxiliar = actual->siguiente;
+            while (auxiliar!=primero){ // No poner NULL que se encicla al infinito, luego de revisar varias veces alfin encontré que era por eso
+                if(auxiliar->edad < actual->edad){
+                    temp->edad = actual->edad;
+                    temp->nombre = actual->nombre;
+                    temp->monedas = actual->monedas;
+                    temp->contra=actual->contra;
+
+                    actual->edad = auxiliar->edad;
+                    actual->nombre = auxiliar->nombre;
+                    actual->monedas = auxiliar->monedas;
+                    actual->contra = auxiliar->contra;
+
+                    auxiliar->edad = temp->edad;
+                    auxiliar->nombre = temp->nombre;
+                    auxiliar->contra = temp->contra;
+                    auxiliar->monedas = temp->monedas;
+                    i+=1;
+
+
+                }
+                int edd;
+                edd = actual->edad;
+                cout << i<< " : "<<edd  ;
+                auxiliar = auxiliar->siguiente;
+            }
+            actual = actual->siguiente;
+
+        }
+
+    } else {
+        cout<<"Lista vacia"<<endl;
+    }
+
+}
+void Ordenardescendente(){
+    nodo* actual = new nodo();
+    nodo* temp = new nodo();
+    nodo* auxiliar = new nodo();
+    int i = 0;
+    if(primero!=NULL){
+        actual = primero;
+        while(actual->siguiente!=primero){
+            auxiliar = actual->siguiente;
+            while (auxiliar!=primero){ // No poner NULL que se encicla al infinito, luego de revisar varias veces alfin encontré que era por eso
+                if(auxiliar->edad > actual->edad){
+                    temp->edad = actual->edad;
+                    temp->nombre = actual->nombre;
+                    temp->monedas = actual->monedas;
+                    temp->contra=actual->contra;
+
+                    actual->edad = auxiliar->edad;
+                    actual->nombre = auxiliar->nombre;
+                    actual->monedas = auxiliar->monedas;
+                    actual->contra = auxiliar->contra;
+
+                    auxiliar->edad = temp->edad;
+                    auxiliar->nombre = temp->nombre;
+                    auxiliar->contra = temp->contra;
+                    auxiliar->monedas = temp->monedas;
+                    i+=1;
+
+
+                }
+
+                auxiliar = auxiliar->siguiente;
+            }
+            actual = actual->siguiente;
+
+        }
+
+    } else {
+        cout<<"Lista vacia"<<endl;
+    }
+
+}
+void imprimir(){
 	nodo* actual = new nodo();
 	actual = primero;
 	if(primero!=NULL){
@@ -232,41 +364,7 @@ void desplegarListaPU(){
 	}else{
 		cout << "\n La lista se Encuentra Vacia\n\n";
 	}
-}
-void Ordenarascendente(){
-    nodo* actual = new nodo();
-    nodo* temp = new nodo();
-    string tmpusuario,tmpcontra;
-    int tmpedad, tmpmonedas;
 
-    if(primero!=NULL){
-        actual = primero;
-        temp = actual->siguiente;
-        while(temp!=primero){
-            if(actual->edad > temp->edad){
-                    cout<< actual->edad <<" : " <<temp->edad;
-                tmpusuario = actual->nombre;
-                tmpcontra = actual->contra;
-                tmpmonedas = actual->monedas;
-                tmpedad = actual->edad;
-
-                actual->nombre = temp->nombre;
-                actual->contra = temp->contra;
-                actual->monedas = temp->monedas;
-                actual->edad = temp->edad;
-
-                temp->nombre = tmpusuario;
-                temp->contra = tmpcontra;
-                temp->monedas = tmpmonedas;
-                temp->edad = tmpedad;
-            }
-            temp = temp->siguiente;
-
-        }
-        actual = actual->siguiente;
-    } else {
-        cout<<"Lista vacia"<<endl;
-    }
 
 }
 string cifrar(string contrasena){

@@ -213,13 +213,12 @@ void reportes(){
         switch (opcion) {
             case 1:
                 cout << "Generando imagen de la lista doblemente enlazada"<<endl;
-
-                opcion = 5;
+                desplegarListaPU();
+                system(("Listacircular.png"));
                 break;
 
             case 2:
                 cout << "Generando imagen de la lista de listas"<<endl;
-                opcion = 5;
                 break;
             case 3:
                 cout << "Generando imagen de la cola de movimientos"<<endl;
@@ -231,11 +230,9 @@ void reportes(){
                 break;
             case 5:
                 cout << "Imprimiendo usuarios ordenados de forma ascendente"<<endl;
+                Ordenarascendente();
+                imprimir();
 
-                Ordenarascendente();
-                Ordenarascendente();
-                Ordenarascendente();
-                desplegarListaPU();
                 break;
 
             case 6:
@@ -246,7 +243,9 @@ void reportes(){
                 break;
             case 7:
                 cout<< "Imprimiendo usuarios ordenados de forma descendente";
-
+                Ordenardescendente();
+                imprimir();
+                break;
             case 8:
                 cout << "Imprimiendo articulos ordenados de forma descendente en precio"<<endl;
 
@@ -260,7 +259,7 @@ void reportes(){
                 cout << "Algo salió mal"<<endl;
                 reportes();
         }
-    } while (opcion!=7);
+    } while (opcion!=9);
 
     return;
 }
