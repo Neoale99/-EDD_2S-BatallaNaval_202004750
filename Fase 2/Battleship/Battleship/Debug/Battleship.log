@@ -1,0 +1,37 @@
+﻿  Battleship.cpp
+  Please define _WIN32_WINNT or _WIN32_WINDOWS appropriately. For example:
+  - add -D_WIN32_WINNT=0x0601 to the compiler command line; or
+  - add _WIN32_WINNT=0x0601 to your project's Preprocessor Definitions.
+  Assuming _WIN32_WINNT=0x0601 (i.e. Windows 7 target).
+C:\Users\aleze\OneDrive\Escritorio\Usac\Semestre 2 2022\EDD\Lab\No mover\vcpkg\installed\x86-windows\include\crow\routing.h(1212,1): warning C4267: 'argumento': conversión de 'size_t' a 'uint16_t'; posible pérdida de datos
+C:\Users\aleze\OneDrive\Escritorio\Usac\Semestre 2 2022\EDD\Lab\Fase 2\Battleship\Battleship\Battleship.cpp(44,23): warning C4244: 'inicializando': conversión de 'int64_t' a 'int'; posible pérdida de datos
+C:\Users\aleze\OneDrive\Escritorio\Usac\Semestre 2 2022\EDD\Lab\Fase 2\Battleship\Battleship\Battleship.cpp(45,20): warning C4244: 'inicializando': conversión de 'int64_t' a 'int'; posible pérdida de datos
+C:\Users\aleze\OneDrive\Escritorio\Usac\Semestre 2 2022\EDD\Lab\Fase 2\Battleship\Battleship\Battleship.cpp(75,23): warning C4018: '<': no coinciden signed/unsigned
+C:\Users\aleze\OneDrive\Escritorio\Usac\Semestre 2 2022\EDD\Lab\Fase 2\Battleship\Battleship\Battleship.cpp(96,23): warning C4018: '<': no coinciden signed/unsigned
+C:\Users\aleze\OneDrive\Escritorio\Usac\Semestre 2 2022\EDD\Lab\Fase 2\Battleship\Battleship\Battleship.cpp(126,23): warning C4018: '<': no coinciden signed/unsigned
+C:\Users\aleze\OneDrive\Escritorio\Usac\Semestre 2 2022\EDD\Lab\No mover\vcpkg\installed\x86-windows\include\crow\http_connection.h(384,68): warning C4244: 'argumento': conversión de 'std::streamsize' a 'size_t'; posible pérdida de datos
+C:\Users\aleze\OneDrive\Escritorio\Usac\Semestre 2 2022\EDD\Lab\No mover\vcpkg\installed\x86-windows\include\crow\http_connection.h(372): message : al compilar la función del miembro clase plantilla "void crow::Connection<Adaptor,Handler>::do_write_static(void)"
+          with
+          [
+              Adaptor=crow::SocketAdaptor,
+              Handler=crow::Crow<>
+          ]
+C:\Users\aleze\OneDrive\Escritorio\Usac\Semestre 2 2022\EDD\Lab\No mover\vcpkg\installed\x86-windows\include\crow\http_connection.h(249): message : Vea la referencia a la creación de una instancia de la función plantilla "void crow::Connection<Adaptor,Handler>::do_write_static(void)" que se está compilando
+          with
+          [
+              Adaptor=crow::SocketAdaptor,
+              Handler=crow::Crow<>
+          ]
+C:\Users\aleze\OneDrive\Escritorio\Usac\Semestre 2 2022\EDD\Lab\No mover\vcpkg\installed\x86-windows\include\crow\http_server.h(195): message : Vea la referencia a la creación de una instancia de clase plantilla "crow::Connection<Adaptor,Handler>" que se está compilando
+          with
+          [
+              Adaptor=crow::SocketAdaptor,
+              Handler=crow::Crow<>
+          ]
+C:\Users\aleze\OneDrive\Escritorio\Usac\Semestre 2 2022\EDD\Lab\No mover\vcpkg\installed\x86-windows\include\crow\http_server.h(195): message : al compilar la función del miembro clase plantilla "void crow::Server<crow::Crow<>,crow::SocketAdaptor>::do_accept(void)"
+C:\Users\aleze\OneDrive\Escritorio\Usac\Semestre 2 2022\EDD\Lab\No mover\vcpkg\installed\x86-windows\include\crow\http_server.h(152): message : Vea la referencia a la creación de una instancia de la función plantilla "void crow::Server<crow::Crow<>,crow::SocketAdaptor>::do_accept(void)" que se está compilando
+C:\Users\aleze\OneDrive\Escritorio\Usac\Semestre 2 2022\EDD\Lab\No mover\vcpkg\installed\x86-windows\include\crow\app.h(301): message : Vea la referencia a la creación de una instancia de clase plantilla "crow::Server<crow::Crow<>,crow::SocketAdaptor>" que se está compilando
+C:\Users\aleze\OneDrive\Escritorio\Usac\Semestre 2 2022\EDD\Lab\No mover\vcpkg\installed\x86-windows\include\crow\app.h(280): message : al compilar la función del miembro clase plantilla "void crow::Crow<>::run(void)"
+C:\Users\aleze\OneDrive\Escritorio\Usac\Semestre 2 2022\EDD\Lab\Fase 2\Battleship\Battleship\Battleship.cpp(54): message : Vea la referencia a la creación de una instancia de la función plantilla "void crow::Crow<>::run(void)" que se está compilando
+C:\Users\aleze\OneDrive\Escritorio\Usac\Semestre 2 2022\EDD\Lab\Fase 2\Battleship\Battleship\Battleship.cpp(33): message : Vea la referencia a la creación de una instancia de clase plantilla "crow::Crow<>" que se está compilando
+  Battleship.vcxproj -> C:\Users\aleze\OneDrive\Escritorio\Usac\Semestre 2 2022\EDD\Lab\Fase 2\Battleship\Debug\Battleship.exe
