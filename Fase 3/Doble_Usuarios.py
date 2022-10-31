@@ -18,7 +18,7 @@ class doble_usuarios():
     def revisar(self):
         aux = self.primero
         while aux is not None:
-            print(aux.nombre+" "+aux.contrasena)
+            print(aux.nombre+" "+aux.contrasena+" victorias: "+str(aux.victorias))
             aux = aux.siguiente 
     def login(self,nombre,contra):
         aux = self.primero

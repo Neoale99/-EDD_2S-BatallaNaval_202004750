@@ -477,7 +477,7 @@ class matriz:
                 return 1
     def victoria(self):
 
-        if self.Barcos_restantes==16:
+        if self.Barcos_restantes==0:
             
             return 1
         else: return 0
